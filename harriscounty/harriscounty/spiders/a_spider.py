@@ -14,7 +14,7 @@ class QuotesSpider(scrapy.Spider):
         # print(''.join(response.xpath("//body//text()").extract()).strip())
 
         # print(response.url)
-        a = '. '.join([x.rstrip() for x in response.xpath("//body//p//text()[not(ancestor::script)]").extract() if len(x.rstrip()) > 0 ]).replace('\r','').replace('\n','').replace('\t','').replace('  ','')
+        a = '. '.join([x.rstrip() for x in response.xpath("//body//text()[not(ancestor::script)]").extract() if len(x.rstrip()) > 0 ][4:-4]).replace('\r','').replace('\n','').replace('\t','').replace('  ','')
         # print(len(a))
         # print(response.xpath("//body//text()[not(ancestor::script)]").extract())
         # with open('test.txt','a') as f:

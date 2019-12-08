@@ -10,5 +10,7 @@ import scrapy
 
 class HarriscountyItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    url = scrapy.Field()
+    text = scrapy.Field()
+    # timestamp = scrapy.Field()
+    

@@ -1,5 +1,6 @@
 import scrapy
 from urllib.parse import urlparse
+from harriscounty.items import HarriscountyItem
 
 
 class QuotesSpider(scrapy.Spider):
@@ -19,10 +20,14 @@ class QuotesSpider(scrapy.Spider):
         # print(response.xpath("//body//text()[not(ancestor::script)]").extract())
         # with open('test.txt','a') as f:
             # f.write(response.url + '\t' + a + '\n')
-        yield {
-            'url': response.url,
-            'text': a
-        }
+        doc = HarriscountyItem()
+        doc['url'] = response.url
+        doc['text'] = a
+        yield doc
+        # yield {
+        #     'url': response.url,
+        #     'text': a
+        # }
         # Get all the <a> tags
         a_selectors = response.xpath("//a")
         # print('*'*20, a_selectors, '*'*20)
@@ -34,13 +39,13 @@ class QuotesSpider(scrapy.Spider):
             # Extract the link href
             link = selector.xpath("@href").extract_first()
             if link:
-                print('--'*25)
+                # print('--'*25)
                 if bool(urlparse(link).netloc):
                     yield scrapy.Request(link, callback=self.parse)
                 else:
                     link = response.urljoin(link)
                     yield scrapy.Request(link, callback=self.parse, dont_filter=False)
-                print(link)
+                # print(link)
             # Create a new Request object
             # print(text, link,'\n')
 

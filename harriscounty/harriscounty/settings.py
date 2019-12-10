@@ -14,6 +14,7 @@ BOT_NAME = 'harriscounty'
 SPIDER_MODULES = ['harriscounty.spiders']
 NEWSPIDER_MODULE = 'harriscounty.spiders'
 
+LOG_LEVEL = 'INFO'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'harriscounty (+http://www.yourdomain.com)'
